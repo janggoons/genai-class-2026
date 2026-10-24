@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 470" width="640" height="470">
+<rect x="10" y="10" width="620" height="72" rx="12" fill="#fff" stroke="#C7D2FE" stroke-width="2"/>
+<text x="30" y="55" font-size="24" font-weight="900" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">입력</text>
+<text x="170" y="55" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">토큰 조각: 항구에서 / 아침 / 일찍 / 배를</text>
+<path d="M320,84 l0,16 m-8,-8 l8,8 l8,-8" stroke="#6B7280" stroke-width="2.5" fill="none"/>
+<rect x="10" y="102" width="620" height="72" rx="12" fill="#EEF2FF" stroke="#4338CA" stroke-width="2"/>
+<text x="30" y="147" font-size="24" font-weight="900" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">어텐션 1층</text>
+<text x="170" y="147" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">'배를'이 앞말을 본다 → '항구에서'를 많이</text>
+<path d="M320,176 l0,16 m-8,-8 l8,8 l8,-8" stroke="#6B7280" stroke-width="2.5" fill="none"/>
+<rect x="10" y="194" width="620" height="72" rx="12" fill="#EEF2FF" stroke="#4338CA" stroke-width="2"/>
+<text x="30" y="239" font-size="24" font-weight="900" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">어텐션 2층</text>
+<text x="170" y="239" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">'타는 배'라는 뜻을 담아 다시 본다</text>
+<path d="M320,268 l0,16 m-8,-8 l8,8 l8,-8" stroke="#6B7280" stroke-width="2.5" fill="none"/>
+<rect x="10" y="286" width="620" height="72" rx="12" fill="#fff" stroke="#C7D2FE" stroke-width="2"/>
+<text x="30" y="331" font-size="24" font-weight="900" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">⋮</text>
+<text x="170" y="331" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">실제 모델은 이런 층이 수십 개</text>
+<path d="M320,360 l0,16 m-8,-8 l8,8 l8,-8" stroke="#6B7280" stroke-width="2.5" fill="none"/>
+<rect x="10" y="378" width="620" height="72" rx="12" fill="#FFEDD5" stroke="#C7D2FE" stroke-width="2"/>
+<text x="30" y="423" font-size="24" font-weight="900" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">출력</text>
+<text x="130" y="423" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">탔다</text>
+<rect x="180" y="404" width="114" height="24" rx="5" fill="#EA580C"/>
+<text x="300" y="423" font-size="18" font-weight="700" fill="#EA580C" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">71%</text>
+<text x="353.6" y="423" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">떠났다</text>
+<rect x="425.6" y="404" width="29" height="24" rx="5" fill="#EA580C"/>
+<text x="460" y="423" font-size="18" font-weight="700" fill="#EA580C" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">18%</text>
+<text x="514.4000000000001" y="423" font-size="21" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">샀다</text>
+<rect x="564.4000000000001" y="404" width="5" height="24" rx="5" fill="#EA580C"/>
+<text x="575" y="423" font-size="18" font-weight="700" fill="#EA580C" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">3%</text>
+</svg>

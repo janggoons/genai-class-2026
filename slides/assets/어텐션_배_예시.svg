@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 860 500" width="860" height="500">
+<path d="M513.0,150 C513.0,13.639999999999986 75.0,13.639999999999986 75.0,150" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.65" stroke-width="9.6"/>
+<path d="M513.0,150 C513.0,42.67999999999999 207.0,42.67999999999999 207.0,150" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.49" stroke-width="4.4"/>
+<path d="M513.0,150 C513.0,68.42 324.0,68.42 324.0,150" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.39" stroke-width="2.0"/>
+<path d="M513.0,150 C513.0,87.56 411.0,87.56 411.0,150" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.50" stroke-width="4.8"/>
+<rect x="30" y="150" width="90" height="56" rx="10" fill="rgba(67,56,202,0.29)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="75.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#fff" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">과일</text>
+<text x="75.0" y="230" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">48%</text>
+<rect x="132" y="150" width="150" height="56" rx="10" fill="rgba(67,56,202,0.13)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="207.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">가게에서</text>
+<text x="207.0" y="230" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">22%</text>
+<rect x="294" y="150" width="60" height="56" rx="10" fill="rgba(67,56,202,0.04)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="324.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">잘</text>
+<text x="324.0" y="230" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">6%</text>
+<rect x="366" y="150" width="90" height="56" rx="10" fill="rgba(67,56,202,0.14)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="411.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">익은</text>
+<text x="411.0" y="230" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">24%</text>
+<rect x="468" y="150" width="90" height="56" rx="10" fill="#fff" stroke="#EA580C" stroke-width="4"/>
+<text x="513.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">배를</text>
+<rect x="570" y="150" width="90" height="56" rx="10" fill="#fff" stroke="#C7D2FE" stroke-width="2"/>
+<text x="615.0" y="188" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">샀다</text>
+<text x="692" y="188" font-size="28" font-weight="900" fill="#EA580C" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">→ 🍐 먹는 배</text>
+<text x="30" y="32" font-size="20" fill="#6B7280" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">'배를'이 앞말을 얼마나 보나 (선이 굵을수록 많이)</text>
+<path d="M441.0,400 C441.0,286.08 105.0,286.08 105.0,400" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.80" stroke-width="14.4"/>
+<path d="M441.0,400 C441.0,315.12 237.0,315.12 237.0,400" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.41" stroke-width="2.0"/>
+<path d="M441.0,400 C441.0,337.56 339.0,337.56 339.0,400" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="0.46" stroke-width="3.6"/>
+<rect x="30" y="400" width="150" height="56" rx="10" fill="rgba(67,56,202,0.43)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="105.0" y="438" text-anchor="middle" font-size="28" font-weight="700" fill="#fff" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">항구에서</text>
+<text x="105.0" y="480" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">72%</text>
+<rect x="192" y="400" width="90" height="56" rx="10" fill="rgba(67,56,202,0.06)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="237.0" y="438" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">아침</text>
+<text x="237.0" y="480" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">10%</text>
+<rect x="294" y="400" width="90" height="56" rx="10" fill="rgba(67,56,202,0.11)" stroke="#C7D2FE" stroke-width="2"/>
+<text x="339.0" y="438" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">일찍</text>
+<text x="339.0" y="480" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">18%</text>
+<rect x="396" y="400" width="90" height="56" rx="10" fill="#fff" stroke="#EA580C" stroke-width="4"/>
+<text x="441.0" y="438" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">배를</text>
+<rect x="498" y="400" width="90" height="56" rx="10" fill="#fff" stroke="#C7D2FE" stroke-width="2"/>
+<text x="543.0" y="438" text-anchor="middle" font-size="28" font-weight="700" fill="#1E1B2E" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">탔다</text>
+<text x="620" y="438" font-size="28" font-weight="900" fill="#EA580C" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">→ ⛵ 타는 배</text>
+<text x="30" y="282" font-size="20" fill="#6B7280" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif">같은 '배'인데 앞말이 다르면</text>
+</svg>

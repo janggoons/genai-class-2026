@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>어텐션 눈으로 보기</title>
+<style>
+  :root { --ink:#1E1B2E; --brand:#4338CA; --accent:#EA580C; --bg:#FAFAF8; --line:#E5E7EB; --muted:#6B7280; --card:#fff; --hl:#EEF2FF; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; line-height:1.5; -webkit-tap-highlight-color:transparent; }
+  main { max-width:1000px; margin:0 auto; padding:20px 16px 48px; }
+  h1 { font-size:24px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 16px; }
+  section { background:var(--card); border:2px solid var(--line); border-radius:14px; padding:16px 18px; margin:16px 0; }
+  section h2 { font-size:19px; margin:0 0 6px; color:var(--brand); }
+  .hint { color:var(--muted); font-size:14px; margin:4px 0; }
+  .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+  .tabs button { font-size:16px; padding:8px 16px; border-radius:999px; border:2px solid var(--brand); background:#fff; color:var(--brand); cursor:pointer; font-weight:700; }
+  .tabs button.on { background:var(--brand); color:#fff; }
+  .stage { position:relative; padding-top:90px; margin-bottom:14px; }
+  .stage svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+  .toks { position:relative; display:flex; flex-wrap:wrap; gap:10px 8px; font-size:clamp(18px,3vw,24px); }
+  .tok { position:relative; padding:6px 10px 22px; border-radius:10px; border:2px solid var(--line); background:#fff; cursor:pointer; user-select:none; min-width:2.4em; text-align:center; }
+  .tok.sel { border-color:var(--accent); box-shadow:0 0 0 3px #FFEDD5; }
+  .tok small { position:absolute; left:0; right:0; bottom:2px; font-size:12px; color:var(--brand); font-weight:700; }
+  .tok.slot { border-style:dashed; border-color:var(--brand); color:var(--brand); }
+  .bars { margin-top:14px; }
+  .bar { display:grid; grid-template-columns:7.5em 1fr 3.5em; gap:8px; align-items:center; font-size:16px; margin:5px 0; }
+  .bar .track { background:var(--hl); border-radius:6px; height:26px; overflow:hidden; }
+  .bar .fill { background:var(--brand); height:100%; transition:width .5s; }
+  .bar.top .fill { background:var(--accent); }
+  .bar b { text-align:right; }
+  .cmp { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:700px) { .cmp { grid-template-columns:1fr; } }
+  .box { border:2px solid var(--line); border-radius:12px; padding:10px 12px; }
+  .box h3 { margin:0 0 4px; font-size:16px; }
+  .answer { font-size:18px; font-weight:700; margin-top:10px; min-height:1.6em; }
+  .go { font-size:17px; font-weight:700; padding:10px 22px; border-radius:999px; border:0; background:var(--brand); color:#fff; cursor:pointer; margin-top:8px; }
+  .note { background:#FEF3C7; border-left:6px solid #F59E0B; padding:10px 14px; border-radius:8px; font-size:14px; }
+  .layers { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+  .layer { border:2px solid var(--line); border-radius:10px; padding:8px 12px; font-size:15px; background:#fff; opacity:.35; transition:opacity .3s, border-color .3s; }
+  .layer.on { opacity:1; border-color:var(--brand); }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>👀 어텐션 눈으로 보기</h1>
+  <p class="sub">생성형 AI는 다음 말을 고를 때 <b>앞에 나온 말을 모두 보고</b>, 그중 어디를 얼마나 볼지 정합니다. 이것을 <b>어텐션(attention)</b>이라고 합니다.</p>
+
+  <!-- 1. 주사위와 비교 -->
+  <section>
+    <h2>① 주사위는 앞말을 보지 않는다, AI는 본다</h2>
+    <p class="hint">'누가'를 하나 골라 보세요. 그다음 '언제'의 확률이 어떻게 달라질까요?</p>
+    <div class="tabs" id="whoTabs"></div>
+    <div class="stage" id="st1"><svg id="sv1"></svg><div class="toks" id="tk1"></div></div>
+    <div class="cmp">
+      <div class="box"><h3>🎲 주사위 (앞말을 안 봄)</h3><div class="bars" id="dice"></div>
+        <p class="hint">누구를 골랐든 표가 같습니다.</p></div>
+      <div class="box"><h3>🤖 어텐션 (앞말을 봄)</h3><div class="bars" id="attn"></div>
+        <p class="hint">앞에서 고른 사람을 보고 확률이 바뀝니다.</p></div>
+    </div>
+    <button class="go" id="pick1">🤖 다음 말 고르기</button>
+    <div class="answer" id="ans1"></div>
+  </section>
+
+  <!-- 2. 단어를 누르면 어디를 보는지 -->
+  <section>
+    <h2>② '배'는 어느 말을 보고 뜻을 정할까?</h2>
+    <p class="hint">문장을 바꾸고, 주황 테두리 단어를 눌러 보세요. 선이 굵을수록 그 말을 많이 봅니다. 다른 단어를 눌러도 됩니다.</p>
+    <div class="tabs" id="exTabs"></div>
+    <div class="stage" id="st2"><svg id="sv2"></svg><div class="toks" id="tk2"></div></div>
+    <div class="bars" id="mean"></div>
+  </section>
+
+  <!-- 3. 트랜스포머 -->
+  <section>
+    <h2>③ 트랜스포머 = 어텐션을 여러 층 쌓은 것</h2>
+    <p class="hint">한 번 보고 끝나지 않습니다. 층마다 앞말을 다시 보며 뜻을 조금씩 다듬고, 마지막 층에서 다음 말의 확률을 냅니다.</p>
+    <div class="layers" id="layers"></div>
+    <button class="go" id="runL">▶ 층 따라가 보기</button>
+  </section>
+
+  <div class="note">이 페이지의 숫자(선 굵기·확률)는 <b>설명하려고 사람이 정한 예시</b>입니다. 실제 모델은 이런 어텐션 수십~수백 개가 동시에 일하고, 확률은 학습으로 정해집니다.
+    실제 모델(GPT-2)이 돌아가는 모습은 <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a>(조지아공대, 영어)에서 볼 수 있습니다.</div>
+  <p class="hint" style="margin-top:20px"><a href="../dice/" target="_blank" rel="noopener">🎲 주사위 활동</a> · <a href="../" target="_blank" rel="noopener">특강 자료 모음으로</a></p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+
+// ---------- ① ----------
+const WHO = {
+  "닐 암스트롱": { "1969년에": 92, "1961년에": 3, "1972년에": 5 },
+  "버즈 올드린": { "1969년에": 90, "1961년에": 4, "1972년에": 6 },
+  "유리 가가린": { "1969년에": 12, "1961년에": 85, "1972년에": 3 },
+};
+const DICE = { "1969년에": 67, "1961년에": 17, "1972년에": 17 };  // 1–4 / 5 / 6
+let who = "유리 가가린";
+
+function bars(el, dist) {
+  const top = Object.entries(dist).sort((a, b) => b[1] - a[1])[0][0];
+  el.innerHTML = Object.entries(dist).map(([w, p]) =>
+    `<div class="bar${w === top ? " top" : ""}"><span>${w}</span><div class="track"><div class="fill" style="width:${p}%"></div></div><b>${p}%</b></div>`).join("");
+}
+function sample(dist) {
+  const a = new Uint32Array(1); crypto.getRandomValues(a);
+  let r = a[0] / 2 ** 32 * 100;
+  for (const [w, p] of Object.entries(dist)) { if ((r -= p) < 0) return w; }
+  return Object.keys(dist)[0];
+}
+
+// 토큰 칩을 그리고, 선택한 칩에서 앞 칩들로 굵기가 다른 곡선을 그린다
+function drawTokens(tkEl, toks, sel, weights) {
+  tkEl.innerHTML = toks.map((t, i) => {
+    const w = weights[i];
+    const bg = w ? `background:rgba(67,56,202,${(w / 100 * 0.55).toFixed(2)});color:${w > 55 ? "#fff" : "inherit"}` : "";
+    return `<div class="tok${i === sel ? " sel" : ""}${t.slot ? " slot" : ""}" data-i="${i}" style="${bg}">${t.text}${w ? `<small>${w}%</small>` : ""}</div>`;
+  }).join("");
+}
+function drawArcs(stage, svg, sel, weights) {
+  const box = stage.getBoundingClientRect();
+  const chips = stage.querySelectorAll(".tok");
+  const c = el => { const r = el.getBoundingClientRect(); return [r.left - box.left + r.width / 2, r.top - box.top]; };
+  const [x1, y1] = c(chips[sel]);
+  svg.innerHTML = Object.entries(weights).filter(([, w]) => w >= 3).map(([i, w]) => {
+    const [x0, y0] = c(chips[i]);
+    const lift = Math.min(85, 30 + Math.abs(x1 - x0) * 0.18);
+    const top = Math.min(y0, y1) - lift;
+    return `<path d="M${x1},${y1} C${x1},${top} ${x0},${top} ${x0},${y0}" fill="none" stroke="#EA580C" stroke-linecap="round" stroke-opacity="${0.35 + w / 160}" stroke-width="${Math.max(1.5, w / 6)}"/>`;
+  }).join("");
+}
+
+const S1 = () => [
+  { text: "달에" }, { text: "처음" }, { text: "발을" }, { text: "디딘" }, { text: "사람은" },
+  { text: who }, { text: "이다." }, { text: "그는" }, { text: "언제?", slot: true },
+];
+const W1 = { 0: 10, 3: 8, 5: 62, 7: 14, 4: 6 };  // '언제?'가 보는 곳
+
+function render1() {
+  drawTokens($("tk1"), S1(), 8, W1);
+  requestAnimationFrame(() => drawArcs($("st1"), $("sv1"), 8, W1));
+  bars($("dice"), DICE);
+  bars($("attn"), WHO[who]);
+  [...$("whoTabs").children].forEach(b => b.classList.toggle("on", b.textContent === who));
+  $("ans1").textContent = "";
+}
+$("whoTabs").innerHTML = Object.keys(WHO).map(w => `<button>${w}</button>`).join("");
+$("whoTabs").onclick = e => { if (e.target.tagName === "BUTTON") { who = e.target.textContent; render1(); } };
+$("pick1").onclick = () => {
+  const w = sample(WHO[who]);
+  $("ans1").innerHTML = `🤖 "달에 처음 발을 디딘 사람은 ${who}이다. 그는 <span style="color:var(--accent)">${w}</span> …" — 그럴듯하지만 사실일까요?`;
+};
+
+// ---------- ② ----------
+// 각 예문: 토큰, 기본 선택, 토큰별 가중치(앞 토큰만), '배'의 뜻 확률
+const EX = [
+  { name: "과일 가게", toks: ["과일", "가게에서", "잘", "익은", "배를", "샀다."], sel: 4,
+    w: { 4: { 0: 48, 1: 22, 3: 24, 2: 6 }, 5: { 4: 55, 1: 30, 0: 15 }, 3: { 2: 60, 0: 25, 1: 15 } },
+    mean: { "🍐 과일": 91, "⛵ 탈것": 4, "🫃 몸": 5 } },
+  { name: "항구", toks: ["항구에서", "아침", "일찍", "배를", "탔다."], sel: 3,
+    w: { 3: { 0: 72, 1: 10, 2: 18 }, 4: { 3: 64, 0: 30, 2: 6 } },
+    mean: { "🍐 과일": 6, "⛵ 탈것": 90, "🫃 몸": 4 } },
+  { name: "점심", toks: ["점심을", "너무", "많이", "먹어서", "배가", "아프다."], sel: 4,
+    w: { 4: { 3: 46, 0: 30, 2: 16, 1: 8 }, 5: { 4: 58, 3: 30, 2: 12 } },
+    mean: { "🍐 과일": 5, "⛵ 탈것": 2, "🫃 몸": 93 } },
+  { name: "그것은?", toks: ["고양이가", "생선을", "먹었다.", "그것은", "배가", "불렀다."], sel: 3,
+    w: { 3: { 0: 70, 1: 22, 2: 8 }, 4: { 3: 40, 0: 35, 2: 25 }, 5: { 4: 55, 3: 25, 0: 20 } },
+    mean: { "😺 그것 = 고양이": 85, "🐟 그것 = 생선": 15 } },
+  { name: "그것은? (2)", toks: ["고양이가", "생선을", "먹었다.", "그것은", "상해", "있었다."], sel: 3,
+    w: { 3: { 0: 46, 1: 46, 2: 8 }, 4: { 3: 30, 1: 50, 0: 20 }, 5: { 4: 60, 3: 40 } },
+    mean: { "😺 그것 = 고양이": 18, "🐟 그것 = 생선": 82 },
+    meanAt: 4, hintAt3: "'그것은'까지만 보면 아직 반반입니다. '상해'를 눌러 보세요." },
+];
+let ex = 0, sel2 = EX[0].sel;
+
+function render2() {
+  const e = EX[ex];
+  const toks = e.toks.map((t, i) => ({ text: t }));
+  const w = e.w[sel2] || {};
+  drawTokens($("tk2"), toks, sel2, w);
+  requestAnimationFrame(() => drawArcs($("st2"), $("sv2"), sel2, w));
+  [...$("exTabs").children].forEach((b, i) => b.classList.toggle("on", i === ex));
+  const showMean = sel2 === (e.meanAt ?? e.sel);
+  if (showMean) {
+    $("mean").innerHTML = `<p class="hint">이 말을 보고 정한 뜻</p>`; const d = document.createElement("div"); bars(d, e.mean); $("mean").appendChild(d);
+  } else if (e.hintAt3 && sel2 === e.sel) {
+    $("mean").innerHTML = `<p class="hint">${e.hintAt3}</p>`; const d = document.createElement("div");
+    bars(d, { "😺 그것 = 고양이": 50, "🐟 그것 = 생선": 50 }); $("mean").appendChild(d);
+  } else {
+    $("mean").innerHTML = Object.keys(w).length ? `<p class="hint">이 말도 앞말을 봅니다. 맨 앞 단어는 볼 앞말이 없습니다.</p>` : `<p class="hint">맨 앞 단어는 볼 앞말이 없습니다. 다른 단어를 눌러 보세요.</p>`;
+  }
+}
+$("exTabs").innerHTML = EX.map(e => `<button>${e.name}</button>`).join("");
+$("exTabs").onclick = e => {
+  if (e.target.tagName !== "BUTTON") return;
+  ex = [...$("exTabs").children].indexOf(e.target); sel2 = EX[ex].sel; render2();
+};
+$("tk2").onclick = e => { const t = e.target.closest(".tok"); if (t) { sel2 = +t.dataset.i; render2(); } };
+
+// ---------- ③ ----------
+const LAYERS = [
+  "입력: 문장을 토큰 조각으로 자른다 — '항구에서 / 아침 / 일찍 / 배를'",
+  "1층 어텐션: '배를'이 앞말을 본다 → '항구에서'를 많이 본다",
+  "2층 어텐션: '배 = 타는 것'이라는 뜻을 담아 다시 본다 → '아침 일찍'도 함께",
+  "… (실제 모델은 이런 층이 수십 개)",
+  "마지막: 다음 말 확률 → 탔다 71% · 떠났다 18% · 샀다 3% …",
+];
+$("layers").innerHTML = LAYERS.map(t => `<div class="layer">${t}</div>`).join("");
+$("runL").onclick = () => {
+  const ls = [...$("layers").children]; ls.forEach(l => l.classList.remove("on"));
+  ls.forEach((l, i) => setTimeout(() => l.classList.add("on"), i * 700));
+};
+
+addEventListener("resize", () => { render1(); render2(); });
+render1(); render2();
+</script>
+</body>
+</html>

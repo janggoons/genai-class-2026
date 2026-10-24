@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>요청문 복사하기</title>
+<style>
+  :root { --ink:#1E1B2E; --brand:#4338CA; --accent:#EA580C; --bg:#FAFAF8; --line:#E5E7EB; --muted:#6B7280; --hl:#EEF2FF; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; line-height:1.6; -webkit-tap-highlight-color:transparent; }
+  main { max-width:900px; margin:0 auto; padding:24px 16px 56px; }
+  h1 { font-size:26px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 18px; }
+  h2 { font-size:19px; color:var(--brand); margin:26px 0 8px; }
+  .card { background:#fff; border:2px solid var(--line); border-radius:12px; padding:14px 16px; margin:10px 0; }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  pre { white-space:pre-wrap; word-break:keep-all; background:var(--hl); border-radius:8px; padding:12px 14px; font-family:inherit; font-size:16px; margin:8px 0; }
+  button { font-size:16px; font-weight:700; padding:9px 20px; border-radius:999px; border:0; background:var(--brand); color:#fff; cursor:pointer; }
+  button.done { background:#16A34A; }
+  .hint { color:var(--muted); font-size:14px; }
+  .tip { background:#FEF3C7; border-left:6px solid #F59E0B; padding:10px 14px; border-radius:8px; font-size:15px; }
+  b.blank { color:var(--accent); }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>📋 요청문 복사하기</h1>
+  <p class="sub">버튼을 눌러 복사 → Gemini 캔버스 입력창에 붙여넣기. <b class="blank">[ ]</b> 안은 우리 앱에 맞게 바꿉니다.</p>
+  <div class="tip">⌨️ 아이패드 키보드의 <b>🎤 마이크</b>를 누르면 말로 입력할 수 있습니다. 긴 요청문은 말로 하고, 틀린 글자만 고치세요.</div>
+
+  <h2>1. 같이 만들기 — 영단어 카드 (5분)</h2>
+  <div class="card">
+    <pre id="p1">영단어 암기 카드 웹앱을 만들어 줘.
+- 내가 단어와 뜻을 직접 입력한다. 내가 입력한 단어만 쓰고, 다른 단어는 절대 추가하지 마.
+- 카드에는 단어만 보이고, 내가 뜻을 떠올린 뒤 버튼을 누르면 뜻이 보인다.
+- '알았다 / 몰랐다' 버튼이 있고, 몰랐던 단어가 더 자주 나온다.
+- 화면은 한국어, 글씨는 크게, 아이패드에서 쓰기 좋게.</pre>
+    <button data-for="p1">복사</button>
+  </div>
+
+  <h2>2. 우리 앱 첫 요청문</h2>
+  <div class="card">
+    <pre id="p2">[앱 이름] 웹앱을 만들어 줘.
+- 누가 쓰나: 고등학생인 내가 [과목] 공부할 때
+- 기능 1: [ ]
+- 기능 2: [ ]
+- 기능 3: [ ]
+- 규칙: 문제와 정답은 내가 직접 입력한다. AI가 내용을 지어내서 넣지 않는다. 답은 내가 먼저 떠올린 뒤에 보여 준다.
+- 화면: 한국어, 글씨 크게, 아이패드에서 쓰기 좋게.</pre>
+    <button data-for="p2">복사</button>
+    <p class="hint">기획서의 '기능 3개'를 그대로 옮겨 적으면 됩니다.</p>
+  </div>
+
+  <h2>3. 고칠 때 — 한 번에 하나씩</h2>
+  <div class="card">
+    <pre id="p3">[무엇을] 했더니 [어떻게] 됐어. [이렇게] 되도록 고쳐 줘. 다른 기능은 바꾸지 마.</pre>
+    <button data-for="p3">복사</button>
+    <p class="hint">예: "몰랐다를 눌렀더니 그 단어가 다시 안 나와. 다음 5장 안에 다시 나오도록 고쳐 줘. 다른 기능은 바꾸지 마."</p>
+  </div>
+
+  <h2>4. 막혔을 때</h2>
+  <div class="card">
+    <h3>요청문을 어떻게 쓸지 모르겠으면</h3>
+    <pre id="p4">이런 앱을 만들고 싶어: [불편했던 점과 기능]. 캔버스에서 만들려면 어떻게 요청하면 좋을지 요청문을 써 줘. 아직 앱은 만들지 마.</pre>
+    <button data-for="p4">복사</button>
+  </div>
+  <div class="card">
+    <h3>고쳤더니 다른 곳이 망가졌으면</h3>
+    <pre id="p5">방금 수정 때문에 [ ]이(가) 안 돼. 바로 전 버전으로 되돌린 다음, [처음 고치려던 것]만 다시 고쳐 줘.</pre>
+    <button data-for="p5">복사</button>
+    <p class="hint">캔버스의 '이전 버전' 기능으로 직접 되돌려도 됩니다.</p>
+  </div>
+
+  <p class="hint" style="margin-top:24px">앱에 이름·학번·사진 같은 개인정보를 넣지 마세요. 공유 링크는 링크를 가진 누구나 볼 수 있습니다.<br>
+  <a href="../" target="_blank" rel="noopener">특강 자료 모음으로</a></p>
+</main>
+<script>
+document.querySelectorAll("button[data-for]").forEach(b => b.onclick = async () => {
+  const t = document.getElementById(b.dataset.for).innerText;
+  try { await navigator.clipboard.writeText(t); }
+  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById(b.dataset.for)); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); }
+  b.textContent = "복사됨 ✓"; b.classList.add("done");
+  setTimeout(() => { b.textContent = "복사"; b.classList.remove("done"); }, 1500);
+});
+</script>
+</body>
+</html>
